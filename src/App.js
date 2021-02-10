@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet';
 import './scss/styleEspinoza.scss';
 import { MenuProvider } from './context/carritoContext';
 
+
 export default function App() {
 	return (
 		<div>
