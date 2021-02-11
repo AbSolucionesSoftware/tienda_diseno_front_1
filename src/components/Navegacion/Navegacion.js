@@ -123,7 +123,7 @@ const Navegacion = (props) => {
 					<div className="top-menu row a3 container-prin">
 						<div className="col-lg-12 container-pages a4">
 							<Menu
-								className="navbar-menu-sesion float-right nav-font-pages a5 font-foot"
+								className="navbar-menu-sesion float-right nav-font-pages a5 font-nav"
 								/* theme="light" */
 								mode="horizontal"
 								defaultSelectedKeys={[ window.location.pathname ]}
@@ -169,14 +169,14 @@ const Navegacion = (props) => {
 
 		<Layout className="layout  a0">
 			<Header className=" a1">
-				<div className="menuCon  a2">
+				<div className="menuCon a2">
 					<div className="top-menu row a3">
-						<div className="col-lg-9 row-logo-search">
-							<div className="row row-logo-search-2 ">
+						<div className="col-lg-2 row-logo-search">
+							<div className="row row-logo-search-2">
 									{!tienda.imagenLogo ? (
 										<div className="d-none" />
 									) : (
-										<div className="col-lg-3">
+										// <div className="">
 											<Link to="/">
 												<div className="contenedor-logo">
 													<img
@@ -186,9 +186,9 @@ const Navegacion = (props) => {
 													/>
 												</div>
 											</Link>
-										</div>
+										// </div>
 									)}
-								<div className="col-lg-8 row input-search">
+								{/* <div className="col-lg-8 row input-search">
 									<Input
 										onChange={valor}
 										className="input-search border-color-search-input"
@@ -200,119 +200,134 @@ const Navegacion = (props) => {
 									>
 										<SearchOutlined style={{fontSize: 25}}/>
 									</Button>
-									
-								</div>
+								</div> */}
 							</div>
 						</div>
+
 						{/* INICIO DE AVATAR, TU CARRITO Y ENTRAR  */}
-						<div className="col-lg-3 a4 container-pages">
-							<Menu
-								className="float-right navbar-menu-sesion a50"
-								/* theme="light" */
-								mode="horizontal"
-								defaultSelectedKeys={[ window.location.pathname ]}
-								inlineindent={0}
-							>
-								{!decoded || decoded.rol === true ? (
-									<Menu.Item key="" className="d-none" />
-								) : (
-									<Menu.Item className="nav-font-color-sesion a6 font-foot" key="/pedidos">
-										<div className="centrar-nav" >Mis compras</div>
-										<Link to="/pedidos" />
-									</Menu.Item>
-								)}
-								{!decoded || decoded.rol === true ? (
-									<Menu.Item key="" className="d-none" />
-								) : (
-									<Menu.Item className="nav-font-color-sesion a6" key="/shopping_cart">
-										<div className="centrar-nav" >
-											<Badge count={carrito}>
-												<ShoppingOutlined style={{ fontSize: 25 }} />
-												<Link to="/shopping_cart" />
-											</Badge>
-										</div>
-									</Menu.Item>
-								)}
-								{token && decoded['rol'] === false ? (
-									<SubMenu
-										className="nav-font-color-sesion a6"
-										icon={
-											!decoded.imagen && !decoded.imagenFireBase ? (
-												<Avatar size="large" style={{ backgroundColor: '#87d068' }}>
-													<p>{decoded.nombre.charAt(0)}</p>
-												</Avatar>
-											) : decoded.imagenFireBase ? (
-												<Avatar size="large" src={decoded.imagenFireBase} />
-											) : (
-												<Avatar size="large" src={aws + decoded.imagen} />
-											)
-										}
-									>
-										<Menu.Item key="" className="nav-font-color-sesion font-foot">
-											<SettingOutlined />Mi cuenta<Link to="/perfiles" />
-										</Menu.Item>
-										<Menu.Item>
-											<div
-												className="text-danger centrar-nav font-foot"
-												onClick={() => {
-													localStorage.removeItem('token');
-													firebase.auth().signOut();
-													setTimeout(() => {
-														window.location.reload();
-													}, 1000);
-												}}
-											>
-												<LogoutOutlined />Cerrar Sesión
-											</div>
-										</Menu.Item>
-									</SubMenu>
-								) : decoded && decoded['rol'] === true ? (
-									<SubMenu
-										className="nav-font-color nav-border-color a6"
-										icon={
-											!decoded.imagen ? (
-												<Avatar size="large" style={{ backgroundColor: '#87d068' }}>
-													<p>{decoded.nombre.charAt(0)}</p>
-												</Avatar>
-											) : (
-												<Avatar size="large" src={aws + decoded.imagen}>
-													{/* <p>{decoded.nombre.charAt(0)}</p> */}
-												</Avatar>
-											)
-										}
-									>
-										<Menu.Item key="" className="font-foot a6">
-											<SettingOutlined />Panel de administrador<Link to="/admin" />
-										</Menu.Item>
-										<Menu.Item key="" className=" a6">
-											<div
-												className="text-danger centrar-nav font-foot"
-												onClick={() => {
-													localStorage.removeItem('token');
-													firebase.auth().signOut();
-													setTimeout(() => {
-														window.location.reload();
-													}, 1000);
-												}}
-											>
-												<LogoutOutlined />Cerrar Sesión
-											</div>
-										</Menu.Item>
-									</SubMenu>
-								) : (
-									<Menu.Item key="" className="d-none" />
-								)}
-								{token === '' || token === null ? (
-									<Menu.Item key="" className="nav-font-color-sesion nav-border-color a6">
-										<div className="centrar-nav" ><UserOutlined style={{fontSize: 27}}/></div>
-										<Link to="/entrar" />
-									</Menu.Item>
-								) : (
-									<Menu.Item key="" className="d-none" />
-								)}
-							</Menu>
+						<div className="col-lg-6 containe-categorias mt-2">
+							<Categorias />
 						</div>
-						{/* FIN DE AVATAR, TU CARRITO Y ENTRAR  */}
+						<div className="col-lg-4 row a4 mt-2 d-flex justify-content-end">
+							<div className="containe-categorias d-flex align-items-center">
+								<Search
+									placeholder="¿Qué estás buscando?"
+									onSearch={(value) => props.history.push(`/searching/${value}`)}
+									className="search-navbar "
+								/>
+							</div>
+							<div>
+								<Menu
+									className="float-right navbar-menu-sesion a50"
+									/* theme="light" */
+									mode="horizontal"
+									defaultSelectedKeys={[ window.location.pathname ]}
+									inlineindent={0}
+								>
+									
+									{!decoded || decoded.rol === true ? (
+										<Menu.Item key="" className="d-none" />
+									) : (
+										<Menu.Item className="nav-font-color-sesion a6" key="/shopping_cart">
+											<div className="centrar-nav mt-2" >
+												<Badge count={carrito}>
+													<ShoppingOutlined style={{ fontSize: 25 }} />
+													<Link to="/shopping_cart" />
+												</Badge>
+											</div>
+										</Menu.Item>
+									)}
+									{token && decoded['rol'] === false ? (
+										<SubMenu
+											className="nav-font-color-sesion a6"
+											icon={
+												!decoded.imagen && !decoded.imagenFireBase ? (
+													<Avatar size="large" style={{ backgroundColor: '#87d068' }}>
+														<p>{decoded.nombre.charAt(0)}</p>
+													</Avatar>
+												) : decoded.imagenFireBase ? (
+													<Avatar size="large" src={decoded.imagenFireBase} />
+												) : (
+													<Avatar size="large" src={aws + decoded.imagen} />
+												)
+											}
+										>	
+										{/* Mis compras dentro del menu peque;o */}
+											{!decoded || decoded.rol === true ? (
+												<Menu.Item key="" className="d-none" />
+											) : (
+												<Menu.Item className="nav-font-color-sesion a6 font-foot" key="/pedidos">
+													
+													<ShoppingOutlined style={{ fontSize: 15 }} />Mis compras
+													<Link to="/pedidos" />
+												</Menu.Item>
+											)}
+											<Menu.Item key="" className="nav-font-color-sesion font-foot">
+												<SettingOutlined />Mi cuenta<Link to="/perfiles" />
+											</Menu.Item>
+											<Menu.Item>
+												<div
+													className="text-danger centrar-nav font-foot"
+													onClick={() => {
+														localStorage.removeItem('token');
+														firebase.auth().signOut();
+														setTimeout(() => {
+															window.location.reload();
+														}, 1000);
+													}}
+												>
+													<LogoutOutlined />Cerrar Sesión
+												</div>
+											</Menu.Item>
+										</SubMenu>
+									) : decoded && decoded['rol'] === true ? (
+										<SubMenu
+											className="nav-font-color nav-border-color a6"
+											icon={
+												!decoded.imagen ? (
+													<Avatar size="large" style={{ backgroundColor: '#87d068' }}>
+														<p>{decoded.nombre.charAt(0)}</p>
+													</Avatar>
+												) : (
+													<Avatar size="large" src={aws + decoded.imagen}>
+														{/* <p>{decoded.nombre.charAt(0)}</p> */}
+													</Avatar>
+												)
+											}
+										>
+											<Menu.Item key="" className="font-foot a6">
+												<SettingOutlined />Panel de administrador<Link to="/admin" />
+											</Menu.Item>
+											<Menu.Item key="" className=" a6">
+												<div
+													className="text-danger centrar-nav font-foot"
+													onClick={() => {
+														localStorage.removeItem('token');
+														firebase.auth().signOut();
+														setTimeout(() => {
+															window.location.reload();
+														}, 1000);
+													}}
+												>
+													<LogoutOutlined />Cerrar Sesión
+												</div>
+											</Menu.Item>
+										</SubMenu>
+									) : (
+										<Menu.Item key="" className="d-none" />
+									)}
+									{token === '' || token === null ? (
+										<Menu.Item key="" className="nav-font-color-sesion nav-border-color a6">
+											<div className="centrar-nav" ><UserOutlined style={{fontSize: 27}}/></div>
+											<Link to="/entrar" />
+										</Menu.Item>
+									) : (
+										<Menu.Item key="" className="d-none" />
+									)}
+								</Menu>
+							</div>
+						</div>
+						{/* FIN DE AVATAR, TU CARRITO Y ENTRAR y todo lo del frente  */}
 
 					</div>
 					<div className="top-menu-responsive">

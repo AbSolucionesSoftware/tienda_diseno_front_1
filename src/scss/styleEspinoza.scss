@@ -158,7 +158,7 @@ p, a, li{
     border-left: none;
 }
 .border-color-search-input{
-    border: 2.5px solid $bg-color-search;
+    border: 1.5px solid $bg-color-search;
 }
 .border-color-search:hover{
     border: 2.5px solid $bg-color-search-hover;
@@ -348,7 +348,23 @@ p, a, li{
     font-size: 15px;
 }
 .font-foot{
-    font-size: 15px;
+    font-size: 14px;
+}
+
+.font-cates{
+    font-size: 19px;
+    text-transform: uppercase;
+    letter-spacing: 1.1px;
+    // font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'AdihausDIN,Helvetica,Arial,sans-serif';
+}
+.font-nav{
+    font-size: 14px;
+    letter-spacing: 1px;
+    // font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'AdihausDIN,Helvetica,Arial,sans-serif';
 }
 
 .font-carrito{
