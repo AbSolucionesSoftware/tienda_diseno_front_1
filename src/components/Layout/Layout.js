@@ -1,15 +1,16 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Layout } from 'antd';
+import { Layout, Spin } from 'antd';
 import Navegacion from '../../components/Navegacion/Navegacion';
 import Categorias from '../Categorias/Categorias';
 import FooterPage from '../../components/Footer/Footer';
+
 import './layout.scss';
 
 export default function LayoutBasic(props) {
 	const { routes } = props;
 	const { Content, Footer } = Layout;
-
+	
 	return (
 		<div className="body">
 			<Layout>

@@ -13,7 +13,7 @@ export default function App() {
 		<div>
 			<Helmet>
 				<meta charSet="utf-8" />
-				<title>Zapateria Espinoza3</title>
+				<title>Diseno Uno</title>
 			</Helmet>
 			<MenuProvider>
 				<Router>
