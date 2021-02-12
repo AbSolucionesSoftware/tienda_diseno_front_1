@@ -12,6 +12,7 @@ import RightMenu from './RightMenu';
 import { MenuContext } from '../../context/carritoContext';
 import aws from '../../config/aws';
 import './navegacion.scss';
+// import '../Categorias/preloading.scss'
 import Categorias from '../../components/Categorias/Categorias';
 
 

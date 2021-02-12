@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import {  Button, Divider, Layout, Menu } from 'antd';
+import {  Button, Divider, Layout, Menu, Spin } from 'antd';
 import { withRouter } from 'react-router-dom';
 import './categorias.scss';
 import './preloading.scss';
@@ -13,8 +13,8 @@ const Categorias = (props) => {
 	const [ categorias, setCategorias ] = useState([]);
 	const [ generos, setGeneros ] = useState([{_id: 'Todos'}]);
 	const [ temporadas, setTemporadas ] = useState([]);
-/* 	const [ loading, setLoading ] = useState(false); */
-	const { reloadFilter } = useContext(MenuContext);
+ 	// const [ loading, setLoading ] = useState(false); 
+	const { reloadFilter, setLoading } = useContext(MenuContext);
 
 	const [ categoriaSeleccionada, setCategoriaSeleccionada, ] = useState(null);
 	const [ subcategoriaSeleccionada, setSubcategoriaSeleccionada, ] = useState(null);
@@ -152,7 +152,7 @@ const Categorias = (props) => {
 		<Layout className="container-subcategorias-nav d-lg-inline size-layout-cat">
 			{/* <Spin className="ml-5 d-inline spin-nav-categorias" spinning={loading} /> */}
 			<Menu
-				className="categorias-navbar d-inline size-menu-cat font-cates"
+				className="categorias-navbar d-inline size-menu-cat font-cates "
 				theme="light"
 				mode="horizontal"
 				defaultSelectedKeys={[ window.location.pathname ]}
