@@ -13,8 +13,8 @@ const Categorias = (props) => {
 	const [ categorias, setCategorias ] = useState([]);
 	const [ generos, setGeneros ] = useState([{_id: 'Todos'}]);
 	const [ temporadas, setTemporadas ] = useState([]);
- 	const [ loading, setLoading ] = useState(false); 
-	const { reloadFilter } = useContext(MenuContext);
+ 	// const [ loading, setLoading ] = useState(false); 
+	const { reloadFilter,setLoading } = useContext(MenuContext);
 
 	const [ categoriaSeleccionada, setCategoriaSeleccionada, ] = useState(null);
 	const [ subcategoriaSeleccionada, setSubcategoriaSeleccionada, ] = useState(null);
@@ -39,7 +39,7 @@ const Categorias = (props) => {
 	}
 
 	async function obtenerCategorias() {
-		setLoading(true);
+		// setLoading(true);
 		await clienteAxios
 			.get('/productos/filtrosNavbar', {
 				headers: {
@@ -76,15 +76,15 @@ const Categorias = (props) => {
 			});
 	}
 
-	if (loading) {
-		return (
-			<div className="preloading">
-				<div className="contenedor-preloading">
-					<Spin size="large" tip="Cargando la tienda..." className="spiner" />
-				</div>
-			</div>
-		);
-	}
+	// if (loading) {
+	// 	return (
+	// 		<div className="preloading">
+	// 			<div className="contenedor-preloading">
+	// 				<Spin size="large" tip="Cargando la tienda..." className="spiner" />
+	// 			</div>
+	// 		</div>
+	// 	);
+	// }
 	
 	if(!generos || !categorias){
 		return null;

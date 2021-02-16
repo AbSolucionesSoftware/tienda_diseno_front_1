@@ -43,6 +43,7 @@ const Navegacion = (props) => {
 	useEffect(
 		() => {
 			setActive(true);
+			setLoading(true);
 			obtenerOfertas();
 			obtenerQuienesSomos();
 			if (token) {
@@ -102,15 +103,18 @@ const Navegacion = (props) => {
 		setVisible(false);
 	};
 
-	// if (loading) {
-	// 	return (
-	// 		<div className="preloading">
-	// 			<div className="contenedor-preloading">
-	// 				<Spin size="large" tip="Cargando la tienda..." className="spiner" />
-	// 			</div>
-	// 		</div>
-	// 	);
-	// }
+
+	if (loading) {
+		return (
+			<div className="preloading">
+				<div className="contenedor-preloading">
+					<Spin size="large" tip="Cargando la tienda..." className="spiner" />
+				</div>
+			</div>
+		);
+	}
+
+	console.log(loading);
 
 	function valor(e) {
 		setBusqueda(e.target.value);
